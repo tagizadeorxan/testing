@@ -1,4 +1,65 @@
 #messages p:nth-child(2n-1) span {
     color:red;
-    
+     
+}
+
+#messages {
+    font-size: 15px;
+}
+
+body {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+i {
+    margin-left: 15px;
+    color:rgba(0, 0, 0, 0.493);
+}
+
+button {
+    outline: none;
+    border:1px solid chocolate;
+    background-color: coral;
+    color:white;
+    height: 34px;
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+label {
+   color:rgb(134, 42, 8);
+   margin-right: 5px;
+}
+
+#username {
+    border:1px solid chocolate;
+    color:coral; 
+    height: 30px;
+    font-size: 20px;
+    padding-left: 7px;
+}
+
+.input-message {
+    border:1px solid chocolate;
+    width: 200px;
+}
+
+.input-message input {
+ outline: none;
+ border:none;
+}
+
+.user {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+}
+
+.disable {
+    display: none;
+}
+
+#emoji {
+    cursor: pointer;
 }
