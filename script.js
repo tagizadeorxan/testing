@@ -30,7 +30,8 @@ setInterval(()=>{
     fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`)
     .then(res=>res.json()).then(res=> {
           if(res.length>showResult) {
-              for(let i=showResult;i<res.length-1;i++) {
+              showResult = res.length;
+              for(let i=showResult;i<=res.length-1;i++) {
                 let message = document.createElement('p');
                 let color= '#'+Math.floor(Math.random()*16777215).toString(16);
                 message.innerHTML = `<span style="color:${color}">${res[i].name}</span> 
