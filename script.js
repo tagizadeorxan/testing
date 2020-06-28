@@ -4,31 +4,30 @@ localStorage.setItem('username','anonim');
 
 let result;
 let messages = document.querySelector("#messages");
-let sendButton = document.getElementById('send');
+
+
+let messageSend = (e) => {
+    if(e.key === "Enter") {
+        let message = e.target.parentNode.children[0].value;
+        result = addMessage(localStorage.getItem('username'), message);
+        messageInput.value="";
+        result.then(res => {
+            if (res) {
+                showMessages();
+            } else {
+                console.error("olmadi")
+            }
+        })
+    }    
+    }
+
 
 let messageInput = document.getElementById("message-input");
 messageInput.addEventListener("keydown",(e)=>messageSend(e));
 
 
-sendButton.addEventListener('click', (e) => messageSend(e));
 
-let messageSend = (e) => {
 
-if(e.key === "Enter") {
-    let message = e.target.parentNode.children[0].value;
-    result = addMessage(localStorage.getItem('username'), message);
-    messageInput.value="";
-    result.then(res => {
-        if (res) {
-            showMessages();
-        } else {
-            console.error("olmadi")
-        }
-    })
-}
-
-  
-}
 
 
 let showMessages = () => {
