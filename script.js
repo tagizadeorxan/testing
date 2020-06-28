@@ -5,6 +5,50 @@ localStorage.setItem('username','anonim');
 let result;
 let messages = document.querySelector("#messages");
 
+let showResult = 0;
+
+fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`)
+.then(res=> res.json())
+.then(res=> showResult = res.length);
+
+
+
+    messages.innerHTML="";
+fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`)
+.then(res=>res.json()).then(res=> {
+    res.map(e=> {
+       
+        let message = document.createElement('p');
+        let color= '#'+Math.floor(Math.random()*16777215).toString(16);
+        message.innerHTML = `<span style="color:${color}">${e.name}</span> 
+        ${e.message}`
+        messages.append(message)
+    })
+})
+
+setInterval(()=>{
+    fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`)
+    .then(res=>res.json()).then(res=> {
+          if(res.length>showResult) {
+              for(let i=showResult;i<res.length-1;i++) {
+                let message = document.createElement('p');
+                let color= '#'+Math.floor(Math.random()*16777215).toString(16);
+                message.innerHTML = `<span style="color:${color}">${res[i].name}</span> 
+                ${res[i].message}`
+                messages.append(message)
+              }
+          }
+    })
+
+},1000)
+
+
+
+
+
+    
+   
+    
 
 let messageSend = (e) => {
     if(e.key === "Enter") {
@@ -25,14 +69,7 @@ let messageSend = (e) => {
 let messageInput = document.getElementById("message-input");
 messageInput.addEventListener("keydown",(e)=>messageSend(e));
 
-
-
-
-
-
 let showMessages = () => {
-   
-   
     let options = {
         headers: {
             "Content-type":"application/json"
@@ -62,21 +99,13 @@ let showMessages = () => {
     res.map(e=>{
         fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages/${e.id}`,deleteOption)
     })
-    
-    
-
    }
-    }) 
-
-
-  
-    
+    })     
 }
 
 
 
 let setUser = document.getElementById("setUser");
-
 setUser.addEventListener("click",getUserName);
 
 function getUserName (e) {
