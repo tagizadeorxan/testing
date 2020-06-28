@@ -31,15 +31,46 @@ messageInput.addEventListener("keydown",(e)=>messageSend(e));
 
 
 let showMessages = () => {
-    let array = JSON.parse(jsonFile)
-    let message = document.createElement('p');
+   
+   
+    let options = {
+        headers: {
+            "Content-type":"application/json"
+        },
+        method:"GET",
+    }
+
+    fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`,options)
+    .then(res=>res.json()).then(res=>{
+   if(res.length<100) {
+  let message = document.createElement('p');
     let color= '#'+Math.floor(Math.random()*16777215).toString(16);
-    message.innerHTML = `<span style="color:${color}">${array[array.length - 1].name}</span> 
-       ${array[array.length - 1].message}`
+    message.innerHTML = `<span style="color:${color}">${res[res.length - 1].name}</span> 
+       ${res[res.length - 1].message}`
     messages.append(message)
 
-   
+    res.map(e=>console.log(e))
 
+   } else {
+    let deleteOption = {
+        headers: {
+            "Content-type":"application/json"
+        },
+        method:"DELETE",
+    }
+     
+    res.map(e=>{
+        fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages/${e.id}`,deleteOption)
+    })
+    
+    
+
+   }
+    }) 
+
+
+  
+    
 }
 
 
