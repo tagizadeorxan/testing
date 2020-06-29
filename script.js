@@ -88,6 +88,7 @@ setUser.addEventListener("click", getUserName);
 function getUserName(e) {
     let username = e.target.parentNode.children[1].value;
     localStorage.setItem('username', username);
+    localStorage.setItem('icon',userMessageIcon.value)
 }
 
 
