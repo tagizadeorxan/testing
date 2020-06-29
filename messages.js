@@ -1,7 +1,7 @@
 let array = []
 let jsonFile;
 
-function addMessage(name, message) {
+function addMessage(name, message,icon) {
     let result = new Promise((resolve, rej) => {
        let options = {
            headers: {
@@ -9,7 +9,7 @@ function addMessage(name, message) {
            },
            method:"POST",
            body: JSON.stringify({
-               name,message
+               name,message,icon
            })
        }
 

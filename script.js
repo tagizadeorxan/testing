@@ -1,6 +1,7 @@
 import addMessage, { jsonFile } from './messages.js';
 
 localStorage.setItem('username','anonim');
+
 let messages = document.getElementById("messages");
 let showResult = 0;
 
@@ -14,7 +15,7 @@ let fetched = fetch(`https://5ea3c7e4270de6001645fbd1.mockapi.io/Messages`)
     res.map(e=> {
         let message = document.createElement('p');
         let color= '#'+Math.floor(Math.random()*16777215).toString(16);
-        message.innerHTML = `<span style="color:${color}">${e.name}</span> 
+        message.innerHTML = `<span>${e.icon}</span> <span style="color:${color}">${e.name}</span> 
         ${e.message}`
         messages.append(message)    
     })  
@@ -34,7 +35,7 @@ setInterval(()=>{
               for(let i=showResult;i<=res.length-1;i++) {
                 let message = document.createElement('p');
                 let color= '#'+Math.floor(Math.random()*16777215).toString(16);
-                message.innerHTML = `<span style="color:${color}">${res[i].name}</span> 
+                message.innerHTML = `<span>${res[i].icon}</span><span style="color:${color}">${res[i].name}</span> 
                 ${res[i].message}`
                 messages.append(message)            
               }
@@ -72,7 +73,7 @@ window.scrollTop = window.height;
 let messageSend = (e) => {
     if(e.key === "Enter") {
         let message = e.target.parentNode.children[0].value;
-       let result = addMessage(localStorage.getItem('username'), message);
+       let result = addMessage(localStorage.getItem('username'), message,localStorage.getItem('icon'));
         messageInput.value="";
        
     }    
@@ -118,4 +119,25 @@ function addEmoji(hex) {
     messageInput.value = messageInput.value + String.fromCodePoint("0x"+hex)
 }
 
+let usericon = document.getElementById('user-icon');
 
+
+let male = String.fromCodePoint('0x1F466');
+let female = String.fromCodePoint('0x1F467');
+
+usericon.innerText=`${male} or ${female}`;
+
+
+
+let userMessageIcon = document.getElementById("user-message-icon");
+
+
+for(let y=128000;y<128063;y++) {
+    let emoji = document.createElement("option")
+    let hex = Number(y).toString(16)
+    emoji.innerText = String.fromCodePoint("0x"+hex)
+    userMessageIcon.append(emoji);
+}
+
+
+localStorage.setItem('icon',userMessageIcon.value);
