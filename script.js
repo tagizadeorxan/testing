@@ -35,7 +35,7 @@ setInterval(() => {
                 for (let i = showResult; i <= res.length - 1; i++) {
                     let message = document.createElement('p');
                     let color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-                    message.innerHTML = `<span>${res[i].icon}</span><span style="color:${color}">${res[i].name}</span> 
+                    message.innerHTML = `<span>${res[i].icon}</span> <span style="color:${color}">${res[i].name}</span> 
                 ${res[i].message}`
                     messages.append(message)
                 }

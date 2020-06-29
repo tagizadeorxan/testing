@@ -44,13 +44,15 @@ label {
 }
 
 .input-message {
-  border: 1px solid chocolate;
+  border: 1px solid coral;
   width: 200px;
 }
 
 .input-message input {
   outline: none;
-  border: none;
+  width: 150px;
+  border:none;
+ 
   height: 30px;
   font-size: 15px;
   padding-left: 7px;
