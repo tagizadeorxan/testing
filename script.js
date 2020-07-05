@@ -1,6 +1,6 @@
 import addMessage, { jsonFile } from './messages.js';
 
-localStorage.setItem('username', 'anonim');
+
 
 let messages = document.getElementById("messages");
 let showResult = 0;
@@ -63,7 +63,7 @@ setInterval(() => {
 
 window.onload = function () {
     var element = document.getElementById("messages");
-    console.log(element.scrollHeight)
+
     element.scrollTop = element.scrollHeight;
     window.scrollTo(0, 500);
 }
@@ -90,6 +90,7 @@ function getUserName(e) {
     localStorage.setItem('username', username);
     localStorage.setItem('icon',userMessageIcon.value)
 }
+
 
 
 
@@ -133,7 +134,10 @@ for (let y = 128000; y < 128063; y++) {
     let hex = Number(y).toString(16)
     emoji.innerText = String.fromCodePoint("0x" + hex)
     userMessageIcon.append(emoji);
+
 }
 
 
-localStorage.setItem('icon', userMessageIcon.value);
+
+
+
